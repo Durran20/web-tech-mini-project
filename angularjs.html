@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  
+<script src="https://cdn.tailwindcss.com"></script>
+<body class="bg-red-50 grid place-items-center h-screen">
+
+<div class="w-full max-w-xs">
+<h2>User Feedback</h2>
+<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" ng-app="myApp" ng-controller="validateCtrl" 
+name="myForm" novalidate>
+
+<p>Username:<br>
+<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="user" ng-model="user" required>
+<span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+<span ng-show="myForm.user.$error.required">Username is required.</span>
+</span>
+</p>
+
+<p>Email:<br>
+<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" name="email" ng-model="email" required>
+<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+<span ng-show="myForm.email.$error.required">Email is required.</span>
+<span ng-show="myForm.email.$error.email">Invalid email address.</span>
+</span>
+</p>
+
+<p>Feedback:<br>
+<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="feedback" ng-model="feedback" required>
+<span style="color:red" ng-show="myForm.feedback.$dirty && myForm.feedback.$invalid">
+<span ng-show="myForm.feedback.$error.required">Feedback is required.</span>
+</span>
+</p>
+
+<br>
+<p>
+<input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit"
+ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||  
+myForm.email.$dirty && myForm.email.$invalid ||  
+myForm.feedback.$dirty && myForm.feedback.$invalid">
+</p>
+
+</form>
+</div>
+
+
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('validateCtrl', function($scope) {
+    $scope.user = '';
+    $scope.email = '';
+    $scope.feedback = '';
+});
+</script>
+
+</body>
+</html>
